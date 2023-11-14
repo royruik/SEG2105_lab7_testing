@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     EditText userName;
@@ -40,4 +43,16 @@ public class LoginActivity extends AppCompatActivity {
         else
             return "Invalid login!";
     }
+    public String validate_email(String userName) {
+        String regex = "^[a-zA-Z0-9_][a-zA-Z0-9_]+@[a-zA-Z0-9_]+(?:\\.[a-zA-Z0-9]+)";
+        Pattern pattern = Pattern.compile(regex, Pattern.UNICODE_CASE);
+        Matcher matcher = pattern.matcher(userName);
+
+        if (matcher.matches()) {
+            return "Valid Username";
+        } else {
+            return "Invalid Username!";
+        }
+    }
+
 }
